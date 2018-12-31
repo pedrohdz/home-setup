@@ -1,0 +1,42 @@
+---
+# ----
+# Import variables
+# ----
+- name: Include global variables
+  include_tasks: ../../globals.yaml
+
+# ----
+# instant-rst
+# ----
+- name: Create instant-rst directory
+  file:
+    path: ~/.local/lib/python/instant-rst
+    state: directory
+    mode: '0700'
+    owner: "{{ ansible_facts['user_uid'] }}"
+    group: "{{ ansible_facts['user_gid'] }}"
+- name: Upload instant-rst requirements.txt
+  copy:
+    src: files/instant-rst-requirements.txt
+    dest: ~/.local/lib/python/instant-rst/requirements.txt
+    mode: '0400'
+    owner: "{{ ansible_facts['user_uid'] }}"
+    group: "{{ ansible_facts['user_gid'] }}"
+- name: Install instant-rst
+  pip:
+    umask: '7077'
+    requirements: ~/.local/lib/python/instant-rst/requirements.txt
+    virtualenv: ~/.local/lib/python/instant-rst
+    virtualenv_command: "{{ virtualenv_command_py27 }}"
+  register: task_result
+  until: task_result is succeeded
+  retries: "{{ package_install_retry }}"
+  delay: "{{ package_install_retry_delay }}"
+- name: Create instant-rst's instantRst symlink
+  file:
+    src: ../lib/python/instant-rst/bin/instantRst
+    dest: ~/.local/bin/instantRst
+    state: link
+    owner: "{{ ansible_facts['user_uid'] }}"
+    group: "{{ ansible_facts['user_gid'] }}"
+...

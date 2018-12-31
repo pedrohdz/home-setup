@@ -1,0 +1,102 @@
+---
+# ----
+# Secure/create directories in ~/.ssh/
+# ----
+- name: Securing directories in ~/.ssh/
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0700
+    owner: "{{ ansible_facts['user_uid'] }}"
+    group: "{{ ansible_facts['user_gid'] }}"
+  loop:
+    - ~/.ssh
+    - ~/.ssh/services
+    - ~/.ssh/sockets
+
+# ----
+# ~/.ssh/known_hosts
+# ----
+- name: Add GitHub to known_hosts
+  known_hosts:
+    name: github.com
+    key: "{{ lookup('file', 'files/ssh_known_hosts_github') }}"
+    state: present
+- name: Add BitBucket to known_hosts
+  known_hosts:
+    name: bitbucket.org
+    key: "{{ lookup('file', 'files/ssh_known_hosts_bitbucket') }}"
+    state: present
+
+# ----
+# ~/.ssh/config
+# ----
+- name: Upload new ~/.ssh/config
+  copy:
+    src: "{{ lookup('first_found', ssh_configs) }}"
+    dest: ~/.ssh/config
+    force: false
+    mode: 0600
+    owner: "{{ ansible_facts['user_uid'] }}"
+    group: "{{ ansible_facts['user_gid'] }}"
+  vars:
+    ssh_configs:
+      - "./files/ssh_config-{{ ansible_distribution | lower }}"
+      - "./files/ssh_config-{{ ansible_os_family | lower }}"
+      - ./files/ssh_config
+
+# ----
+# Upload SSH key files
+# ----
+- name: Upload SSH private keys
+  copy:
+    src: "{{ item['file'] }}"
+    dest: "{{ '~/.ssh/{}'.format(item['name']) }}"
+    force: false
+    mode: 0600
+    owner: "{{ ansible_facts['user_uid'] }}"
+    group: "{{ ansible_facts['user_gid'] }}"
+  loop: "{{ ssh_keys_to_copy | default([]) }}"
+- name: Upload SSH public keys
+  copy:
+    src: "{{ '{}.pub'.format(item['file']) }}"
+    dest: "{{ '~/.ssh/{}.pub'.format(item['name']) }}"
+    force: false
+    mode: 0600
+    owner: "{{ ansible_facts['user_uid'] }}"
+    group: "{{ ansible_facts['user_gid'] }}"
+  loop: "{{ ssh_keys_to_copy | default([]) }}"
+
+# ----
+# Secure files in ~/.ssh/
+# ----
+- name: Upload .gitignore
+  copy:
+    src: ./files/ssh_gitignore
+    dest: ~/.ssh/.gitignore
+    force: false
+    mode: 0600
+    owner: "{{ ansible_facts['user_uid'] }}"
+    group: "{{ ansible_facts['user_gid'] }}"
+
+# ----
+# Secure files in ~/.ssh/
+# ----
+- name: Get ~/.ssh/id_*
+  shell: ls -1 ~/.ssh/id_*
+  register: dot_ssh_ids
+  changed_when: false
+- name: Secure files in ~/.ssh/
+  file:
+    path: "{{ item }}"
+    mode: 0600
+    owner: "{{ ansible_facts['user_uid'] }}"
+    group: "{{ ansible_facts['user_gid'] }}"
+  loop: "{{ dot_ssh_files + dot_ssh_ids.stdout_lines }}"
+  vars:
+    dot_ssh_files:
+      - ~/.ssh/config
+      - ~/.ssh/authorized_keys
+      - ~/.ssh/known_hosts
+      - ~/.ssh/.gitignore
+...

@@ -1,0 +1,10 @@
+---
+extends: default
+
+rules:
+  # TODO - Try and bring back down to 80. Ansible-lint allows 120.
+  line-length:
+    max: 120
+...
+
+# vim: filetype=yaml

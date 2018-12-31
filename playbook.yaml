@@ -1,0 +1,10 @@
+---
+- hosts: all
+  roles:
+    - role: setup_debian
+      when: sudo_access and (ansible_facts['os_family'] | lower == "debian")
+    - role: common
+    - role: workstation
+    - role: devops
+    - role: homeshick
+...

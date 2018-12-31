@@ -1,0 +1,5 @@
+---
+go_platform: linux
+virtualenv_command_py3: pyvenv-3.4
+virtualenv_command_py27: virtualenv
+...

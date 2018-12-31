@@ -1,0 +1,27 @@
+---
+- name: Processing key home directory files
+  import_tasks: home_files.yaml
+  tags:
+    - common
+    - home_files
+- name: Processing ~/.ssh
+  import_tasks: dot_ssh.yaml
+  tags:
+    - common
+    - dot_ssh
+- name: Processing common libs
+  import_tasks: libs.yaml
+  tags:
+    - common
+    - common_libs
+- name: Processing common tools
+  import_tasks: tools.yaml
+  tags:
+    - common
+    - common_tools
+- name: Processing user's global Git configuration
+  import_tasks: git_config.yaml
+  tags:
+    - common
+    - git_config
+...

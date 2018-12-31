@@ -1,0 +1,17 @@
+---
+package_install_retry: 3
+package_install_retry_delay: 10
+homeshick_castles:
+  - name: dr-home
+    uri: git@bitbucket.org:pedrohdz/dr-home.git
+  - name: dr-tmux
+    uri: git@github.com:pedrohdz/dr-tmux.git
+  - name: dr-vimfiles
+    uri: git@github.com:pedrohdz/dr-vimfiles.git
+  - name: dr-vimfiles-devops
+    uri: git@github.com:pedrohdz/dr-vimfiles-devops.git
+  - name: dr-vimfiles-nodejs
+    uri: git@github.com:pedrohdz/dr-vimfiles-nodejs.git
+  - name: dr-vimfiles-python
+    uri: git@github.com:pedrohdz/dr-vimfiles-python.git
+...

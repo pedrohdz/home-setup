@@ -1,0 +1,5 @@
+---
+go_platform: darwin
+virtualenv_command_py3: /opt/local/bin/python3 -m venv
+virtualenv_command_py27: /opt/local/bin/virtualenv-2.7
+...

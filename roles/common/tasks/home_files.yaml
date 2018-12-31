@@ -1,0 +1,39 @@
+---
+- name: Creating/securing home directory scructure
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0700
+    owner: "{{ ansible_facts['user_uid'] }}"
+    group: "{{ ansible_facts['user_gid'] }}"
+  loop:
+    - ~/
+    - ~/.local
+    - ~/.local/bin
+    - ~/.local/etc
+    - ~/.local/lib
+    - ~/.local/lib/node_modules
+    - ~/.local/lib/python
+    - ~/.local/opt
+    - ~/.tmux
+    - ~/.vim
+    - ~/dev
+    - ~/tmp
+
+- name: Create home file if it does not exist
+  copy:
+    content: ""
+    dest: "{{ item }}"
+    force: false
+    mode: 0600
+    owner: "{{ ansible_facts['user_uid'] }}"
+    group: "{{ ansible_facts['user_gid'] }}"
+  loop: "{{ home_files | default([]) }}"
+- name: Secure home files
+  file:
+    path: "{{ item }}"
+    mode: 0600
+    owner: "{{ ansible_facts['user_uid'] }}"
+    group: "{{ ansible_facts['user_gid'] }}"
+  loop: "{{ home_files | default([]) }}"
+...

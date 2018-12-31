@@ -1,0 +1,16 @@
+---
+- name: Install base Ubuntu packages
+  package:
+    name: "{{ item }}"
+  loop:
+    - git
+    - python3.4-venv
+    - python3-pip
+    - python-virtualenv
+    - tmux
+  become: true
+  register: task_result
+  until: task_result is succeeded
+  retries: "{{ package_install_retry }}"
+  delay: "{{ package_install_retry_delay }}"
+...

@@ -1,0 +1,6 @@
+---
+- import_tasks: instant-rst.yaml
+  tags:
+    - workstation
+    - instant_rst
+...

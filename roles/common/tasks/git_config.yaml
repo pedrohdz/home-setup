@@ -1,0 +1,86 @@
+---
+# [color]
+- name: git config color.ui
+  git_config:
+    name: color.ui
+    value: auto
+    scope: global
+
+- name: git config color.diff
+  git_config:
+    name: color.diff
+    value: auto
+    scope: global
+
+- name: git config color.branch
+  git_config:
+    name: color.branch
+    value: auto
+    scope: global
+
+- name: git config color.status
+  git_config:
+    name: color.status
+    value: auto
+    scope: global
+
+# [alias]
+- name: git config alias.logg
+  git_config:
+    name: alias.logg
+    value: log --graph --decorate=full
+    scope: global
+
+- name: git config alias.dt
+  git_config:
+    name: alias.dt
+    value: difftool
+    scope: global
+
+- name: git config alias.show-graph
+  git_config:
+    name: alias.show-graph
+    value: log --graph --abbrev-commit --pretty=oneline
+    scope: global
+
+- name: git config alias.files-in-commit
+  git_config:
+    name: alias.files-in-commit
+    value: show --pretty="" --name-only
+    scope: global
+
+# [branch]
+- name: git config branch.autosetupmerge
+  git_config:
+    name: branch.autosetupmerge
+    value: 'true'
+    scope: global
+
+# [push]
+- name: git config push.default
+  git_config:
+    name: push.default
+    value: tracking
+    scope: global
+
+# [rebase]
+- name: git config rebase.stat
+  git_config:
+    name: rebase.stat
+    value: 'true'
+    scope: global
+
+# [diff]
+- name: git config diff.tool
+  git_config:
+    name: diff.tool
+    value: vimdiff
+    scope: global
+
+# [merge]
+- name: git config merge.tool
+  git_config:
+    name: merge.tool
+    value: vimdiff
+    scope: global
+...
