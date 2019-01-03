@@ -4,38 +4,11 @@
 # ----
 - name: Include global variables
   include_tasks: ../../globals.yaml
-- name: Gather non-os specific variables
-  include_vars: vars/no_arch.yaml
 - name: Gather os specific variables
   include_vars: "{{ item }}"
   with_first_found:
     - "vars/{{ ansible_distribution | lower }}.yaml"
     - "vars/{{ ansible_os_family | lower }}.yaml"
-
-# ----
-# jmespath-terminal
-# ----
-- name: Install jmespath-terminal
-  pip:
-    name: jmespath-terminal
-    version: "{{ jmespath_terminal_version }}"
-    umask: '7077'
-    virtualenv: "~/.local/lib/python/jmespath-terminal-{{ jmespath_terminal_version }}"
-    virtualenv_command: "{{ virtualenv_command_py3 }}"
-  register: task_result
-  until: task_result is succeeded
-  retries: "{{ package_install_retry }}"
-  delay: "{{ package_install_retry_delay }}"
-- name: Create jmespath-terminal version symlink
-  file:
-    src: "jmespath-terminal-{{ jmespath_terminal_version }}"
-    dest: ~/.local/lib/python/jmespath-terminal
-    state: link
-- name: Create jmespath-terminal jpterm symlink
-  file:
-    src: ../lib/python/jmespath-terminal/bin/jpterm
-    dest: ~/.local/bin/jpterm
-    state: link
 
 # ----
 # jp - JMESPath
@@ -55,82 +28,4 @@
     state: link
     owner: "{{ ansible_facts['user_uid'] }}"
     group: "{{ ansible_facts['user_gid'] }}"
-
-# ----
-# ignr
-# ----
-- name: Install ignr
-  pip:
-    name: ignr
-    version: "{{ ignr_version }}"
-    umask: '7077'
-    virtualenv: "~/.local/lib/python/ignr-{{ ignr_version }}"
-    virtualenv_command: "{{ virtualenv_command_py27 }}"
-  register: task_result
-  until: task_result is succeeded
-  retries: "{{ package_install_retry }}"
-  delay: "{{ package_install_retry_delay }}"
-- name: Create ignr version symlink
-  file:
-    src: "ignr-{{ ignr_version }}"
-    dest: ~/.local/lib/python/ignr
-    state: link
-- name: Create ignr symlink
-  file:
-    src: ../lib/python/ignr/bin/ignr
-    dest: ~/.local/bin/ignr
-    state: link
-
-# ----
-# yamllint
-# ----
-- name: Install yamllint
-  pip:
-    name: yamllint
-    version: "{{ yamllint_version }}"
-    umask: '7077'
-    virtualenv: "~/.local/lib/python/yamllint-{{ yamllint_version }}"
-    virtualenv_command: "{{ virtualenv_command_py3 }}"
-  register: task_result
-  until: task_result is succeeded
-  retries: "{{ package_install_retry }}"
-  delay: "{{ package_install_retry_delay }}"
-- name: Create yamllint version symlink
-  file:
-    src: "yamllint-{{ yamllint_version }}"
-    dest: ~/.local/lib/python/yamllint
-    state: link
-- name: Create yamllint yamllint symlink
-  file:
-    src: ../lib/python/yamllint/bin/yamllint
-    dest: ~/.local/bin/yamllint
-    state: link
-
-# ----
-# ansible-lint
-# ----
-- name: Install ansible-lint
-  pip:
-    name: ansible-lint
-    version: "{{ ansible_lint_version }}"
-    umask: '7077'
-    virtualenv: "~/.local/lib/python/ansible-lint-{{ ansible_lint_version }}"
-    virtualenv_command: "{{ virtualenv_command_py3 }}"
-  when: (ansible_facts['os_family'] | lower) != "debian"
-  register: task_result
-  until: task_result is succeeded
-  retries: "{{ package_install_retry }}"
-  delay: "{{ package_install_retry_delay }}"
-- name: Create ansible-lint version symlink
-  file:
-    src: "ansible-lint-{{ ansible_lint_version }}"
-    dest: ~/.local/lib/python/ansible-lint
-    state: link
-  when: (ansible_facts['os_family'] | lower) != "debian"
-- name: Create ansible-lint jpterm symlink
-  file:
-    src: ../lib/python/ansible-lint/bin/ansible-lint
-    dest: ~/.local/bin/ansible-lint
-    state: link
-  when: (ansible_facts['os_family'] | lower) != "debian"
 ...

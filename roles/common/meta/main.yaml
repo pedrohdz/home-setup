@@ -1,0 +1,193 @@
+---
+dependencies:
+  # ** ansible-lint **
+  - role: dotlocal-pyenv-install
+    vars:
+      package_name: ansible-lint
+      version: '4.0.0'
+      python_version: python3
+      bin_files:
+        - ansible-lint
+    tags:
+      - common
+      - ansible-lint
+  # ** awscli **
+  - role: dotlocal-pyenv-install
+    vars:
+      package_name: awscli
+      version: '1.16.81'
+      python_version: python3
+      bin_files:
+        - aws
+        - aws_completer
+    tags:
+      - common
+      - awscli
+  # ** ignr **
+  - role: dotlocal-pyenv-install
+    vars:
+      package_name: ignr
+      version: '1.1'
+      python_version: python27
+      bin_files:
+        - ignr
+    tags:
+      - common
+      - ignr
+  # ** jmespath-terminal  **
+  - role: dotlocal-pyenv-install
+    vars:
+      package_name: jmespath-terminal
+      version: '0.2.1'
+      python_version: python3
+      bin_files:
+        - jpterm
+    tags:
+      - common
+      - jpterm
+      - jmespath-terminal
+  # ** yamllint **
+  - role: dotlocal-pyenv-install
+    vars:
+      package_name: yamllint
+      version: '1.13.0'
+      python_version: python3
+      bin_files:
+        - yamllint
+    tags:
+      - common
+      - yamllint
+  # ** bumpversion **
+  - role: dotlocal-pyenv-install
+    vars:
+      package_name: bumpversion
+      version: 'LATEST'
+      python_version: python3
+      bin_files:
+        - bumpversion
+    tags:
+      - common
+      - common_tools
+      - bumpversion
+  # ** flake8 **
+  - role: dotlocal-pyenv-install
+    vars:
+      package_name: flake8
+      version: 'LATEST'
+      python_version: python3
+      bin_files:
+        - flake8
+    tags:
+      - common
+      - common_tools
+      - flake8
+  # ** future **
+  - role: dotlocal-pyenv-install
+    vars:
+      package_name: future
+      version: 'LATEST'
+      python_version: python3
+      bin_files:
+        - futurize
+    tags:
+      - common
+      - common_tools
+      - future
+      - futurize
+  # ** isort **
+  - role: dotlocal-pyenv-install
+    vars:
+      package_name: isort
+      version: 'LATEST'
+      python_version: python3
+      bin_files:
+        - isort
+    tags:
+      - common
+      - common_tools
+      - isort
+  # ** netaddr **
+  - role: dotlocal-pyenv-install
+    vars:
+      package_name: netaddr
+      version: 'LATEST'
+      python_version: python3
+      bin_files:
+        - netaddr
+    tags:
+      - common
+      - common_tools
+      - netaddr
+  # ** pip-autoremove **
+  - role: dotlocal-pyenv-install
+    vars:
+      package_name: pip-autoremove
+      version: 'LATEST'
+      python_version: python3
+      bin_files:
+        - pip-autoremove
+    tags:
+      - common
+      - common_tools
+      - pip-autoremove
+  # ** pipdeptree **
+  - role: dotlocal-pyenv-install
+    vars:
+      package_name: pipdeptree
+      version: 'LATEST'
+      python_version: python3
+      bin_files:
+        - pipdeptree
+    tags:
+      - common
+      - common_tools
+      - pipdeptree
+  # ** pylint **
+  - role: dotlocal-pyenv-install
+    vars:
+      package_name: pylint
+      version: 'LATEST'
+      python_version: python3
+      bin_files:
+        - pylint
+    tags:
+      - common
+      - common_tools
+      - pylint
+  # ** sqlparse **
+  - role: dotlocal-pyenv-install
+    vars:
+      package_name: sqlparse
+      version: 'LATEST'
+      python_version: python3
+      bin_files:
+        - sqlformat
+    tags:
+      - common
+      - common_tools
+      - sqlparse
+  # ** tabulate **
+  - role: dotlocal-pyenv-install
+    vars:
+      package_name: tabulate
+      version: 'LATEST'
+      python_version: python3
+      bin_files:
+        - tabulate
+    tags:
+      - common
+      - common_tools
+      - tabulate
+  # ** tox **
+  - role: dotlocal-pyenv-install
+    vars:
+      package_name: tox
+      version: 'LATEST'
+      python_version: python3
+      bin_files:
+        - tox
+    tags:
+      - common
+      - common_tools
+      - tox
+...

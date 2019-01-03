@@ -15,6 +15,7 @@
     - ~/.local/lib/node_modules
     - ~/.local/lib/python
     - ~/.local/opt
+    - ~/.local/opt/python
     - ~/.tmux
     - ~/.vim
     - ~/dev
