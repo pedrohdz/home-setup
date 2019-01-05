@@ -1,0 +1,6 @@
+---
+- name: Processing Homeshick installations
+  import_tasks: homeshick-common.yaml
+  tags:
+    - homeshick_common
+...

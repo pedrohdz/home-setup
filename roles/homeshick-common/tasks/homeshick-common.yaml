@@ -1,0 +1,10 @@
+---
+- name: Install Homesick
+  git:
+    repo: https://github.com/andsens/homeshick.git
+    dest: ~/.homesick/repos/homeshick
+    version: master
+    update: false
+    accept_hostkey: false
+    umask: '7077'
+...

@@ -1,18 +1,9 @@
 ---
-- name: Install Homesick
-  git:
-    repo: https://github.com/andsens/homeshick.git
-    dest: ~/.homesick/repos/homeshick
-    version: master
-    update: false
-    accept_hostkey: false
-    umask: '7077'
-- name: Install Homesick castle
+- name: "Install Homesick castle {{ name }} ({{ uri }})"
   shell: >-
     umask 7077 ;
-    {{ '~/.homesick/repos/homeshick/bin/homeshick clone --batch {}'.format(item['uri']) }}
-    && {{ '~/.homesick/repos/homeshick/bin/homeshick link --force --batch {}'.format(item['name']) }}
+    ~/.homesick/repos/homeshick/bin/homeshick clone --batch {{ uri }}
+    && ~/.homesick/repos/homeshick/bin/homeshick link --force --batch {{ name }}
   args:
-    creates: "{{ '~/.homesick/repos/{}'.format(item['name']) }}"
-  loop: "{{ homeshick_castles }}"
+    creates: "~/.homesick/repos/{{ name }}"
 ...

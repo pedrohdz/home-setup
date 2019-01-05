@@ -1,6 +1,10 @@
 ---
-- name: Processing Homeshick installations
-  import_tasks: homeshick.yaml
-  tags:
-    - homeshick
+- name: Processing Homesick castles
+  include_tasks: homeshick.yaml
+  vars:
+    name: "{{ castle['uri'] | regex_replace('.*/([^/\\.]+).git$', '\\1') }}"
+    uri: "{{ castle['uri'] }}"
+  loop: "{{ castles }}"
+  loop_control:
+    loop_var: castle
 ...

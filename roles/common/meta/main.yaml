@@ -11,4 +11,15 @@ dependencies:
     tags:
       - common
       - common_tools
+  - role: homeshick
+    castles:
+      - uri: git@bitbucket.org:pedrohdz/dr-home.git
+      - uri: git@github.com:pedrohdz/dr-tmux.git
+      - uri: git@github.com:pedrohdz/dr-vimfiles.git
+      - uri: git@github.com:pedrohdz/dr-vimfiles-devops.git
+      - uri: git@github.com:pedrohdz/dr-vimfiles-nodejs.git
+      - uri: git@github.com:pedrohdz/dr-vimfiles-python.git
+    tags:
+      - common
+      - common_homeshick
 ...

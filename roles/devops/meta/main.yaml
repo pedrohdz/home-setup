@@ -1,5 +1,6 @@
 ---
 dependencies:
+  - role: common
   - role: dotlocal-pyenv-install
     vars:
       packages:
