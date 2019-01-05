@@ -22,7 +22,7 @@ dependencies:
   - role: dotlocal-pyenv-install
     vars:
       packages:
-        - package_name: ansible-lint
+        - package: ansible-lint
           version: '4.0.0'
     when: (ansible_facts['os_family'] | lower) != 'debian'
     tags:
