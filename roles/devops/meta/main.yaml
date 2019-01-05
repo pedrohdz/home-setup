@@ -19,6 +19,8 @@ dependencies:
     tags:
       - devops
       - devops_tools
+      - dotlocal_pyenv_install
+      - install
   - role: dotlocal-pyenv-install
     vars:
       packages:
@@ -28,6 +30,8 @@ dependencies:
     tags:
       - devops
       - devops_tools
+      - dotlocal_pyenv_install
+      - install
   - role: homeshick
     vars:
       castles:
@@ -35,4 +39,6 @@ dependencies:
     tags:
       - devops
       - devops_homeshick
+      - homeshick
+      - install
 ...

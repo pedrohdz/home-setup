@@ -8,4 +8,6 @@ dependencies:
     tags:
       - dev_nodejs
       - dev_nodejs_homeshick
+      - homeshick
+      - install
 ...

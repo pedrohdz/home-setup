@@ -16,6 +16,8 @@ dependencies:
     tags:
       - dev_python
       - dev_python_tools
+      - dotlocal_pyenv_install
+      - install
 
   - role: dotlocal-pyenv-install
     vars:
@@ -24,6 +26,8 @@ dependencies:
     tags:
       - dev_python
       - dev_python_tools
+      - dotlocal_pyenv_install
+      - install
     when: (ansible_facts['os_family'] | lower) != 'debian'
 
   - role: homeshick
@@ -33,4 +37,6 @@ dependencies:
     tags:
       - dev_python
       - dev_python_homeshick
+      - homeshick
+      - install
 ...
