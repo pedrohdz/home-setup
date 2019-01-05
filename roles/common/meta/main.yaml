@@ -1,24 +1,26 @@
 ---
 dependencies:
   - role: dotlocal-pyenv-install
-    packages:
-      - package: bumpversion
-      - package: ignr
-        version: '1.1'
-        python_version: python27
-      - package: pip-autoremove
-      - package: pipdeptree
+    vars:
+      packages:
+        - package: bumpversion
+        - package: ignr
+          version: '1.1'
+          python_version: python27
+        - package: pip-autoremove
+        - package: pipdeptree
     tags:
       - common
       - common_tools
   - role: homeshick
-    castles:
-      - uri: git@bitbucket.org:pedrohdz/dr-home.git
-      - uri: git@github.com:pedrohdz/dr-tmux.git
-      - uri: git@github.com:pedrohdz/dr-vimfiles.git
-      - uri: git@github.com:pedrohdz/dr-vimfiles-devops.git
-      - uri: git@github.com:pedrohdz/dr-vimfiles-nodejs.git
-      - uri: git@github.com:pedrohdz/dr-vimfiles-python.git
+    vars:
+      castles:
+        - uri: git@bitbucket.org:pedrohdz/dr-home.git
+        - uri: git@github.com:pedrohdz/dr-tmux.git
+        - uri: git@github.com:pedrohdz/dr-vimfiles.git
+        - uri: git@github.com:pedrohdz/dr-vimfiles-devops.git
+        - uri: git@github.com:pedrohdz/dr-vimfiles-nodejs.git
+        - uri: git@github.com:pedrohdz/dr-vimfiles-python.git
     tags:
       - common
       - common_homeshick
