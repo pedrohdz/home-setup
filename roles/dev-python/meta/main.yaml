@@ -25,4 +25,12 @@ dependencies:
       - dev_python
       - dev_python_tools
     when: (ansible_facts['os_family'] | lower) != 'debian'
+
+  - role: homeshick
+    vars:
+      castles:
+        - uri: git@github.com:pedrohdz/dr-vimfiles-python.git
+    tags:
+      - dev_python
+      - dev_python_homeshick
 ...
