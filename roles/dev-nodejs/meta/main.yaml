@@ -1,0 +1,11 @@
+---
+dependencies:
+  - role: dev-common
+  - role: homeshick
+    vars:
+      castles:
+        - uri: git@github.com:pedrohdz/dr-vimfiles-nodejs.git
+    tags:
+      - dev_nodejs
+      - dev_nodejs_homeshick
+...
