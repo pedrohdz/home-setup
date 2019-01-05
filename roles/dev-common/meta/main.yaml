@@ -1,0 +1,15 @@
+---
+dependencies:
+  # ** sqlparse **
+  - role: dotlocal-pyenv-install
+    vars:
+      package_name: sqlparse
+      version: 'LATEST'
+      python_version: python3
+      bin_files:
+        - sqlformat
+    tags:
+      - common
+      - common_tools
+      - sqlparse
+...
