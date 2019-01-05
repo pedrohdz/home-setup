@@ -1,66 +1,30 @@
 ---
 dependencies:
-  # ** ansible-lint **
   - role: dotlocal-pyenv-install
     vars:
-      package_name: ansible-lint
-      version: '4.0.0'
-      python_version: python3
-      bin_files:
-        - ansible-lint
+      packages:
+        - package: awscli
+          version: '1.16.81'
+          bin_files:
+            - aws
+            - aws_completer
+        - package: jmespath-terminal
+          version: '0.2.1'
+          bin_files:
+            - jpterm
+        - package: netaddr
+        - package: yamllint
+          version: '1.13.0'
+    tags:
+      - devops
+      - devops_tools
+  - role: dotlocal-pyenv-install
+    vars:
+      packages:
+        - package_name: ansible-lint
+          version: '4.0.0'
     when: (ansible_facts['os_family'] | lower) != 'debian'
     tags:
-      - common
-      - ansible-lint
-
-  # ** awscli **
-  - role: dotlocal-pyenv-install
-    vars:
-      package_name: awscli
-      version: '1.16.81'
-      python_version: python3
-      bin_files:
-        - aws
-        - aws_completer
-    tags:
-      - common
-      - awscli
-
-  # ** jmespath-terminal  **
-  - role: dotlocal-pyenv-install
-    vars:
-      package_name: jmespath-terminal
-      version: '0.2.1'
-      python_version: python3
-      bin_files:
-        - jpterm
-    tags:
-      - common
-      - jpterm
-      - jmespath-terminal
-
-  # ** netaddr **
-  - role: dotlocal-pyenv-install
-    vars:
-      package_name: netaddr
-      version: 'LATEST'
-      python_version: python3
-      bin_files:
-        - netaddr
-    tags:
-      - common
-      - common_tools
-      - netaddr
-
-  # ** yamllint **
-  - role: dotlocal-pyenv-install
-    vars:
-      package_name: yamllint
-      version: '1.13.0'
-      python_version: python3
-      bin_files:
-        - yamllint
-    tags:
-      - common
-      - yamllint
+      - devops
+      - devops_tools
 ...

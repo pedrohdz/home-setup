@@ -10,11 +10,15 @@
   roles:
     - workstation
 
-- hosts: dev, workstation
+- hosts:
+    - dev
+    - workstation
   roles:
     - dev-all
 
-- hosts: devops, workstation
+- hosts:
+    - devops
+    - workstation
   roles:
     - devops
 ...

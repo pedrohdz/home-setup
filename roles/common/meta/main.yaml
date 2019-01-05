@@ -1,53 +1,14 @@
 ---
 dependencies:
-  # ** bumpversion **
   - role: dotlocal-pyenv-install
-    vars:
-      package_name: bumpversion
-      version: 'LATEST'
-      python_version: python3
-      bin_files:
-        - bumpversion
+    packages:
+      - package: bumpversion
+      - package: ignr
+        version: '1.1'
+        python_version: python27
+      - package: pip-autoremove
+      - package: pipdeptree
     tags:
       - common
       - common_tools
-      - bumpversion
-
-  # ** ignr **
-  - role: dotlocal-pyenv-install
-    vars:
-      package_name: ignr
-      version: '1.1'
-      python_version: python27
-      bin_files:
-        - ignr
-    tags:
-      - common
-      - ignr
-
-  # ** pip-autoremove **
-  - role: dotlocal-pyenv-install
-    vars:
-      package_name: pip-autoremove
-      version: 'LATEST'
-      python_version: python3
-      bin_files:
-        - pip-autoremove
-    tags:
-      - common
-      - common_tools
-      - pip-autoremove
-
-  # ** pipdeptree **
-  - role: dotlocal-pyenv-install
-    vars:
-      package_name: pipdeptree
-      version: 'LATEST'
-      python_version: python3
-      bin_files:
-        - pipdeptree
-    tags:
-      - common
-      - common_tools
-      - pipdeptree
 ...

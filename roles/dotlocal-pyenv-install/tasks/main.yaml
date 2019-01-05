@@ -1,31 +1,16 @@
 ---
-- name: Include global variables
-  include_tasks: ../../globals.yaml
+- name: Statically import global variables
+  import_tasks: ../../globals.yaml
 
-- name: "Install Python package {{ package_name }} {{ version }} in a virtual environment"
-  pip:
-    name: "{{ package_name }}"
-    version: "{{ version if version != 'LATEST' else '' }}"
-    umask: '7077'
-    virtualenv: "~/.local/opt/python/{{ package_name }}-{{ version }}"
-    virtualenv_command: "{{ venv_command[python_version] }}"
-  register: task_result
-  until: task_result is succeeded
-  retries: "{{ package_install_retry }}"
-  delay: "{{ package_install_retry_delay }}"
+- name: Installing multiple Python venvs
+  include_tasks: process.yaml
+  when: packages is defined
   vars:
-    venv_command:
-      python27: "{{ virtualenv_command_py27 }}"
-      python3: "{{ virtualenv_command_py3 }}"
-- name: "Create a symlink to active version: {{ package_name }}-{{ version }}"
-  file:
-    src: "{{ package_name }}-{{ version }}"
-    dest: "~/.local/opt/python/{{ package_name }}"
-    state: link
-- name: "Create symlinks to the bin files: {{ bin_files }}"
-  file:
-    src: "../opt/python/{{ package_name }}/bin/{{ item }}"
-    dest: "~/.local/bin/{{ item }}"
-    state: link
-  loop: "{{ bin_files }}"
+    package: "{{ package_item['package'] }}"
+    python_version: "{{ package_item['python_version'] if 'python_version' in package_item else 'python3' }}"
+    version: "{{ package_item['version'] if 'version' in package_item else 'LATEST' }}"
+    bin_files: "{{ package_item['bin_files'] if 'bin_files' in package_item else [ package_item['package'] ] }}"
+  loop: "{{ packages }}"
+  loop_control:
+    loop_var: package_item
 ...

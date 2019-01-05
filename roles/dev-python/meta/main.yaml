@@ -2,86 +2,27 @@
 dependencies:
   - role: dev-common
 
-  # ---------------------------------------------------------------------------
-  # dotlocal-pyenv-install
-  # ---------------------------------------------------------------------------
-  # ** flake8 **
   - role: dotlocal-pyenv-install
     vars:
-      package_name: flake8
-      version: 'LATEST'
-      python_version: python3
-      bin_files:
-        - flake8
+      packages:
+        - package: flake8
+        - package: future
+          bin_files:
+            - futurize
+            - pasteurize
+        - package: isort
+        - package: tabulate
+        - package: tox
     tags:
-      - common
-      - common_tools
-      - flake8
+      - dev_python
+      - dev_python_tools
 
-  # ** future **
   - role: dotlocal-pyenv-install
     vars:
-      package_name: future
-      version: 'LATEST'
-      python_version: python3
-      bin_files:
-        - futurize
+      packages:
+        - package: pylint
     tags:
-      - common
-      - common_tools
-      - future
-      - futurize
-
-  # ** isort **
-  - role: dotlocal-pyenv-install
-    vars:
-      package_name: isort
-      version: 'LATEST'
-      python_version: python3
-      bin_files:
-        - isort
-    tags:
-      - common
-      - common_tools
-      - isort
-
-  # ** pylint **
-  - role: dotlocal-pyenv-install
-    vars:
-      package_name: pylint
-      version: 'LATEST'
-      python_version: python3
-      bin_files:
-        - pylint
-    tags:
-      - common
-      - common_tools
-      - pylint
+      - dev_python
+      - dev_python_tools
     when: (ansible_facts['os_family'] | lower) != 'debian'
-
-  # ** tabulate **
-  - role: dotlocal-pyenv-install
-    vars:
-      package_name: tabulate
-      version: 'LATEST'
-      python_version: python3
-      bin_files:
-        - tabulate
-    tags:
-      - common
-      - common_tools
-      - tabulate
-
-  # ** tox **
-  - role: dotlocal-pyenv-install
-    vars:
-      package_name: tox
-      version: 'LATEST'
-      python_version: python3
-      bin_files:
-        - tox
-    tags:
-      - common
-      - common_tools
-      - tox
 ...
