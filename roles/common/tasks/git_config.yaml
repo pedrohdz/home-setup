@@ -31,10 +31,34 @@
     value: log --graph --decorate=full
     scope: global
 
+- name: git config alias.logg-short
+  git_config:
+    name: alias.logg-short
+    value: log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+    scope: global
+
 - name: git config alias.dt
   git_config:
     name: alias.dt
     value: difftool
+    scope: global
+
+- name: git config files-changed-diff
+  git_config:
+    name: alias.files-changed-diff
+    value: show --pretty="" --name-only --dirstat=lines
+    scope: global
+
+- name: git config alias.prune
+  git_config:
+    name: alias.prune
+    value: '!f() { local target="${1:-origin}"; git fetch --prune "$target" && git prune-tags "$target"; }; f'
+    scope: global
+
+- name: git config alias.prune-tags
+  git_config:
+    name: alias.prune-tags
+    value: '!f() { git fetch --prune "${1:-origin}" "+refs/tags/*:refs/tags/*"; }; f'
     scope: global
 
 - name: git config alias.show-graph
