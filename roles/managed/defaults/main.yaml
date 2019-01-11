@@ -70,6 +70,7 @@ macports:
     - port: s3cmd
     - port: samba3
     - port: shellcheck
+    - port: siege
     - port: socat
     - port: sshpass
     - port: stunnel

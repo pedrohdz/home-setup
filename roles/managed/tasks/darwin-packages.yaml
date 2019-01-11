@@ -10,6 +10,8 @@
   delay: "{{ package_install_retry_delay }}"
   loop: "{{ macports.present | default([]) }}"
   become: true
+
+# TODO - Just join the list of ports to uninstall to avoid errors.
 - name: Uninstall certain MacPorts ports
   macports:
     name: "{{ item['port'] }}"
