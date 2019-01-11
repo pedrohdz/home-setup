@@ -21,6 +21,8 @@ Running:
 ansible-playbook playbook.yaml
 # OR
 ansible-playbook -l localhost playbook.yaml
+# OR
+ansible-playbook --ask-become-pass -l localhost playbook.yaml
 ```
 
 Linting:

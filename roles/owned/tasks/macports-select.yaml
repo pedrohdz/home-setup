@@ -4,7 +4,7 @@
   register: selected_port
   changed_when: false
 - name: Selecting '{{ version }}' for '{{ group }}'
-  shell: port select --set {{ group }} {{ version }}
+  command: port select --set {{ group }} {{ version }}
   when: selected_port.stdout != version
   become: true
 ...

@@ -34,7 +34,11 @@
 - name: git config alias.slogg
   git_config:
     name: alias.slogg
-    value: log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+    value: log
+        --graph
+        --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset'
+        --abbrev-commit
+        --date=relative
     scope: global
 
 - name: git config alias.dt

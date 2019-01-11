@@ -1,4 +1,6 @@
 ---
+package_install_retry: 3
+package_install_retry_delay: 10
 macports:
   present:
     - port: ImageMagick
@@ -81,7 +83,7 @@ macports:
     - port: watch
     - port: wget
     - port: xmlstarlet
-    - { "port": "vim", "variant": "+python37+huge" }
+    - {"port": "vim", "variant": "+python37+huge"}
 
   absent:
     - port: awscli_select
