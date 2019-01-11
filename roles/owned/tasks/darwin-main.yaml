@@ -1,0 +1,9 @@
+---
+- name: Install/uninstall/configure MacPorts
+  import_tasks: "darwin-packages.yaml"
+  tags:
+    - owned_darwin_packages
+    - owned_darwin_ports
+    - managed_darwin_packages
+    - managed_darwin_ports
+...

@@ -1,0 +1,8 @@
+---
+- name: Process MacPorts selections
+  include_tasks: macports-select.yaml
+  vars:
+    group: "{{ item['group'] }}"
+    version: "{{ item['version'] }}"
+  loop: "{{ macports.selections }}"
+...

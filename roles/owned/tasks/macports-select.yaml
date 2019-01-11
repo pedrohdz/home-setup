@@ -1,0 +1,10 @@
+---
+- name: Querying selected macport for '{{ group }}'
+  shell: port select --show {{ group }}  | sed -e "s/.*is '\(.*\)'\./\1/"
+  register: selected_port
+  changed_when: false
+- name: Selecting '{{ version }}' for '{{ group }}'
+  shell: port select --set {{ group }} {{ version }}
+  when: selected_port.stdout != version
+  become: true
+...

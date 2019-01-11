@@ -1,0 +1,15 @@
+---
+- name: Install requested MacPorts ports
+  macports:
+    name: "{{ item['port'] }}"
+    variant: "{{ item['variant'] if 'variant' in item else '' }}"
+    state: "present"
+  loop: "{{ macports.present | default([]) }}"
+  become: true
+- name: Uninstall certain MacPorts ports
+  macports:
+    name: "{{ item['port'] }}"
+    state: "absent"
+  loop: "{{ macports.absent | default([]) }}"
+  become: true
+...

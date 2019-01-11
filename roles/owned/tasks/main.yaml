@@ -1,0 +1,10 @@
+---
+- name: Processed managed OS X system
+  import_tasks: "darwin-main.yaml"
+  when: "(ansible_facts['os_family'] | lower) == 'darwin'"
+  tags:
+    - owned_darwin
+    - owned
+    - managed_darwin
+    - managed
+...

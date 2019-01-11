@@ -1,0 +1,18 @@
+---
+macports:
+  selections:
+    - group: maven
+      version: maven3
+    - group: pip
+      version: pip37
+    - group: python
+      version: python37
+    - group: python2
+      version: python27
+    - group: python3
+      version: python37
+    - group: ruby
+      version: ruby24
+    - group: virtualenv
+      version: virtualenv27
+...
