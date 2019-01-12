@@ -4,5 +4,5 @@
   vars:
     group: "{{ item['group'] }}"
     version: "{{ item['version'] }}"
-  loop: "{{ macports.selections }}"
+  loop: "{{ macports.selections | default([]) }}"
 ...

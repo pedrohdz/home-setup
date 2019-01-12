@@ -1,0 +1,70 @@
+---
+- block:
+  - name: Local MacPorts ports directory structure
+    file:
+      path: '{{ item }}'
+      state: directory
+      mode: 0700
+      owner: '{{ owner }}'
+      group: '{{ group }}'
+    become: true
+    loop:
+      - '{{ opt_user }}'
+      - '{{ local_ports_base }}'
+      - '{{ local_ports_base }}/src'
+      - '{{ local_ports_base }}/active-ports'
+      - '{{ local_ports_base }}/active-ports/aqua'
+      - '{{ local_ports_base }}/active-ports/sysutils'
+
+  - name: Git clone port source repos
+    git:
+      repo: 'git@github.com:pedrohdz/{{ item }}.git'
+      umask: '7077'
+      dest: '{{ local_ports_base }}/src/{{ item }}'
+      update: false
+      accept_hostkey: false
+    loop:
+      - macports-ports
+      - koekeishiya-ports
+
+  - name: Symlinks to koekeishiya-ports
+    file:
+      src: '../../src/koekeishiya-ports/aqua/{{ item }}'
+      dest: '{{ local_ports_base }}/active-ports/aqua/{{ item }}'
+      state: link
+      owner: '{{ owner }}'
+      group: '{{ group }}'
+    loop:
+      - chunkwm
+      - skhd
+
+  - name: Symlinks to macports-ports
+    file:
+      src: '../../src/macports-ports/{{ item }}'
+      dest: '{{ local_ports_base }}/active-ports/{{ item }}'
+      state: link
+      owner: '{{ owner }}'
+      group: '{{ group }}'
+    loop:
+      - sysutils/terraform
+      - sysutils/minikube
+      - sysutils/kubectl
+
+  - name: Add MacPorts source
+    lineinfile:
+      path: /opt/local/etc/macports/sources.conf
+      regexp: '^{{ url }}'
+      line: '{{ url }}'
+      insertbefore: '^rsync:.*\[default\]\s*$'
+      state: present
+      backup: true
+    become: true
+    vars:
+      url: 'file://{{ local_ports_base }}/active-ports'
+
+  vars:
+    opt_user: '/opt/{{ ansible_facts["user_id"] }}'
+    local_ports_base:  '/opt/{{ ansible_facts["user_id"] }}/macports'
+    owner: '{{ ansible_facts["user_uid"] }}'
+    group: '{{ ansible_facts["user_gid"] }}'
+...

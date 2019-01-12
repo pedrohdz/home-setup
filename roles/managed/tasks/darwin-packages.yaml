@@ -1,4 +1,10 @@
 ---
+- name: Uninstall unwanted MacPorts ports
+  macports:
+    name: "{{ macports.absent | default([]) }}"
+    state: "absent"
+  become: true
+
 - name: Install requested MacPorts ports
   macports:
     name: "{{ macports.present | default([]) }}"
@@ -19,12 +25,5 @@
   retries: "{{ package_install_retry }}"
   delay: "{{ package_install_retry_delay }}"
   loop: "{{ macports.present_variants | default([]) }}"
-  become: true
-
-# TODO - Just join the list of ports to uninstall to avoid errors.
-- name: Uninstall unwanted MacPorts ports
-  macports:
-    name: "{{ macports.absent | default([]) }}"
-    state: "absent"
   become: true
 ...
