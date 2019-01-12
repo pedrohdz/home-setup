@@ -1,0 +1,26 @@
+---
+- name: "Install NodeJS module {{ module }} {{ version }}"
+  npm:
+    name: "{{ module }}"
+    global: false
+    path: "~/.local/opt/nodejs/{{ module }}-{{ version }}"
+    state: present
+    version: "{{ version if version != 'LATEST' else '' }}"
+  register: task_result
+  until: task_result is succeeded
+  retries: "{{ package_install_retry }}"
+  delay: "{{ package_install_retry_delay }}"
+- name: "Create a symlink to active version: {{ module }}-{{ version }}"
+  file:
+    src: "{{ module }}-{{ version }}"
+    dest: "~/.local/opt/nodejs/{{ module }}"
+    state: link
+- name: "Create symlinks to the bin files: {{ bin_files }}"
+  file:
+    src: "../opt/nodejs/{{ module }}/node_modules/.bin/{{ bin_file_item }}"
+    dest: "~/.local/bin/{{ bin_file_item }}"
+    state: link
+  loop: "{{ bin_files }}"
+  loop_control:
+    loop_var: bin_file_item
+...

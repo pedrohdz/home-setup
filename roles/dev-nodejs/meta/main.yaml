@@ -1,6 +1,8 @@
 ---
 dependencies:
   - role: dev-common
+    tags:
+      - dev_nodejs
   - role: homeshick
     vars:
       castles:
@@ -9,5 +11,18 @@ dependencies:
       - dev_nodejs
       - dev_nodejs_homeshick
       - homeshick
+      - install
+  - role: dotlocal-nodejs-install
+    vars:
+      modules:
+        - module: instant-markdown-d
+          version: 0.1.0
+          bin_files:
+            - instant-markdown-d
+            - markdown-it
+    tags:
+      - dev_nodejs
+      - dev_nodejs_tools
+      - dotlocal_nodejs_install
       - install
 ...

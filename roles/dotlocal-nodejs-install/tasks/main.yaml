@@ -1,0 +1,12 @@
+---
+- name: Installing multiple NodeJS modules via NPM
+  include_tasks: process.yaml
+  when: modules is defined
+  vars:
+    module: "{{ module_item['module'] }}"
+    version: "{{ module_item['version'] if 'version' in module_item else 'LATEST' }}"
+    bin_files: "{{ module_item['bin_files'] if 'bin_files' in module_item else [ module_item['module'] ] }}"
+  loop: "{{ modules }}"
+  loop_control:
+    loop_var: module_item
+...
