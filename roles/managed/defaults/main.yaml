@@ -46,6 +46,7 @@ macports:
     - maven3
     - maven_select
     - minicom
+    - minikube
     - mtools
     - nmap
     - openssh
@@ -74,6 +75,7 @@ macports:
     - socat
     - sshpass
     - stunnel
+    - terraform
     - tmux
     - tmux-pasteboard
     - tor

@@ -1,0 +1,6 @@
+---
+- name: Setup local MacPort sources
+  import_tasks: darwin-macports-local-sources.yaml
+  tags:
+    - macport_local_sources
+...

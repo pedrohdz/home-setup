@@ -4,7 +4,7 @@
     file:
       path: '{{ item }}'
       state: directory
-      mode: 0700
+      mode: 0755
       owner: '{{ owner }}'
       group: '{{ group }}'
     become: true
@@ -19,10 +19,14 @@
   - name: Git clone port source repos
     git:
       repo: 'git@github.com:pedrohdz/{{ item }}.git'
-      umask: '7077'
+      version: master
       dest: '{{ local_ports_base }}/src/{{ item }}'
       update: false
       accept_hostkey: false
+    register: task_result
+    until: task_result is succeeded
+    retries: "{{ package_install_retry }}"
+    delay: "{{ package_install_retry_delay }}"
     loop:
       - macports-ports
       - koekeishiya-ports
@@ -64,7 +68,7 @@
 
   vars:
     opt_user: '/opt/{{ ansible_facts["user_id"] }}'
-    local_ports_base:  '/opt/{{ ansible_facts["user_id"] }}/macports'
+    local_ports_base: '/opt/{{ ansible_facts["user_id"] }}/macports'
     owner: '{{ ansible_facts["user_uid"] }}'
     group: '{{ ansible_facts["user_gid"] }}'
 ...

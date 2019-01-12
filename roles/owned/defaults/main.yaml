@@ -1,5 +1,12 @@
 ---
+package_install_retry: 3
+package_install_retry_delay: 10
+
 macports:
+  present:
+    - chunkwm
+    - skhd
+
   selections:
     - group: maven
       version: maven3

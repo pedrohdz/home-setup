@@ -1,4 +1,14 @@
 ---
+- name: Install requested MacPorts ports
+  macports:
+    name: "{{ macports.present | default([]) }}"
+    state: "present"
+  register: task_result
+  until: task_result is succeeded
+  retries: "{{ package_install_retry }}"
+  delay: "{{ package_install_retry_delay }}"
+  become: true
+
 - name: Process MacPorts selections
   include_tasks: lib/macports-select.yaml
   vars:

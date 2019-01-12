@@ -9,6 +9,7 @@
   macports:
     name: "{{ macports.present | default([]) }}"
     state: "present"
+    update_ports: true
   register: task_result
   until: task_result is succeeded
   retries: "{{ package_install_retry }}"

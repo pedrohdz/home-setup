@@ -1,8 +1,4 @@
 ---
-- name: Setup local MacPort sources
-  import_tasks: darwin-macports-local-sources.yaml
-  tags:
-    - macport_local_sources
 - name: Install/uninstall/configure MacPorts
   import_tasks: darwin-packages.yaml
   tags:

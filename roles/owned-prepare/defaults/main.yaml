@@ -1,0 +1,4 @@
+---
+package_install_retry: 3
+package_install_retry_delay: 10
+...

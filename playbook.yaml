@@ -3,6 +3,8 @@
   roles:
     - role: setup_debian
       when: sudo_access and (ansible_facts['os_family'] | lower == "debian")
+    - role: owned-prepare
+      when: owned | default(false)
     - role: managed
       when: managed | default(false)
     - role: owned
