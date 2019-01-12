@@ -1,21 +1,30 @@
 ---
 - name: Install requested MacPorts ports
   macports:
-    name: "{{ item['port'] }}"
-    variant: "{{ item['variant'] if 'variant' in item else '' }}"
+    name: "{{ macports.present | default([]) }}"
     state: "present"
   register: task_result
   until: task_result is succeeded
   retries: "{{ package_install_retry }}"
   delay: "{{ package_install_retry_delay }}"
-  loop: "{{ macports.present | default([]) }}"
+  become: true
+
+- name: Install requested MacPorts ports variants
+  macports:
+    name: "{{ item['port'] }}"
+    variant: "{{ item['variant'] }}"
+    state: "present"
+  register: task_result
+  until: task_result is succeeded
+  retries: "{{ package_install_retry }}"
+  delay: "{{ package_install_retry_delay }}"
+  loop: "{{ macports.present_variants | default([]) }}"
   become: true
 
 # TODO - Just join the list of ports to uninstall to avoid errors.
-- name: Uninstall certain MacPorts ports
+- name: Uninstall unwanted MacPorts ports
   macports:
-    name: "{{ item['port'] }}"
+    name: "{{ macports.absent | default([]) }}"
     state: "absent"
-  loop: "{{ macports.absent | default([]) }}"
   become: true
 ...
