@@ -53,17 +53,17 @@
     value: show --pretty="" --name-only --dirstat=lines
     scope: global
 
-- name: git config alias.prune
+- name: git config alias.fetch-prune
   git_config:
     name: alias.prune
-    value: '!f() { local target="${1:-origin}"; git fetch --prune "$target" && git prune-tags "$target"; }; f'
+    value: '!f() { local target="${1:-origin}"; git fetch --prune --prune-tags "$target"; }; f'
     scope: global
 
-- name: git config alias.prune-tags
-  git_config:
-    name: alias.prune-tags
-    value: '!f() { git fetch --prune "${1:-origin}" "+refs/tags/*:refs/tags/*"; }; f'
-    scope: global
+#- name: git config alias.prune-tags
+#  git_config:
+#    name: alias.prune-tags
+#    value: '!f() { git fetch --prune "${1:-origin}" "+refs/tags/*:refs/tags/*"; }; f'
+#    scope: global
 
 - name: git config alias.show-graph
   git_config:
