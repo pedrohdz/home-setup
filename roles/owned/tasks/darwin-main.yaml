@@ -6,4 +6,16 @@
     - owned_darwin_ports
     - managed_darwin_packages
     - managed_darwin_ports
+
+- name: Short circuit rouge source commands
+  blockinfile:
+    path: /etc/profile
+    regexp: '^return'
+    block: |
+      # Short circuit annoying rouge source commands
+      return
+    insertbefore: '^#\s*Include\s+profile.d\s+scripts'
+    state: present
+    backup: true
+  become: true
 ...
