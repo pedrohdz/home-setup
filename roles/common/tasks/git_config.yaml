@@ -101,6 +101,13 @@
     value: 'true'
     scope: global
 
+# [pull]
+- name: git config pull.rebase
+  git_config:
+    name: pull.rebase
+    value: 'true'
+    scope: global
+
 # [push]
 - name: git config push.default
   git_config:
