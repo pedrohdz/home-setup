@@ -8,7 +8,7 @@ Using _Ansible_ to setup my systems.
 Setup:
 
 ```bash
-python3 -m venv .virtualenv
+python3 -m venv .venv
 source .virtualenv/bin/activate
 pip install -U pip
 pip install ansible ansible-lint yamllint
