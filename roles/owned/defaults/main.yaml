@@ -8,6 +8,10 @@ macports:
     - skhd
 
   selections:
+    - group: helm
+      version: helm2.14
+    - group: kubectl
+      version: kubectl1.13
     - group: maven
       version: maven3
     - group: pip

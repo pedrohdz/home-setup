@@ -38,9 +38,19 @@ macports:
     - grep
     - gsed
     - gtime
+    - helm-2.12
+    - helm-2.13
+    - helm-2.14
+    - helm_select
     - htop
     - inetutils
-    - kubectl
+    - kubectl-1.10
+    - kubectl-1.11
+    - kubectl-1.12
+    - kubectl-1.13
+    - kubectl-1.14
+    - kubectl-1.15
+    - kubectl_select
     - less
     - lftp
     - maven3
@@ -60,10 +70,16 @@ macports:
     - pv
     - py27-pip
     - py27-virtualenv
+    - py34-pip
+    - py35-pip
+    - py36-pip
     - py37-gnureadline
     - py37-pip
     - python27
     - python2_select
+    - python34
+    - python35
+    - python36
     - python37
     - python3_select
     - python_select
@@ -92,19 +108,16 @@ macports:
 
   absent:
     - awscli_select
+    - helm
+    - kubectl
+    - py26-pip
     - py27-awscli
+    - py33-pip
     - py34-awscli
     - py35-awscli
     - py36-awscli
     - py37-awscli
     - python26
     - python33
-    - python34
-    - python35
-    - python36
-    - py26-pip
-    - py33-pip
-    - py34-pip
-    - py35-pip
-    - py36-pip
+
 ...
