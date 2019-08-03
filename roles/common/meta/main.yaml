@@ -4,6 +4,7 @@ dependencies:
     vars:
       packages:
         - package: bumpversion
+        - package: bump2version
         - package: ignr
           version: '1.1'
           python_version: python27

@@ -108,8 +108,8 @@ macports:
 
   absent:
     - awscli_select
-    - helm
-    - kubectl
+    #- helm
+    #- kubectl
     - py26-pip
     - py27-awscli
     - py33-pip
