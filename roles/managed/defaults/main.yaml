@@ -22,7 +22,6 @@ macports:
     - cvs
     - dnsmasq
     - drill
-    - e2fsprogs
     - findutils
     - flex
     - gawk
