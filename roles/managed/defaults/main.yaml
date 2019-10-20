@@ -28,7 +28,8 @@ macports:
     - git
     - gmake
     - gnetcat
-    - gnupg2
+    # FIXME - Cataline support pending
+    # - gnupg2
     - gnutar
     - gnutls
     - go
@@ -58,6 +59,10 @@ macports:
     - minikube
     - mtools
     - nmap
+    - npm6
+    - openjdk11
+    - openjdk13
+    - openjdk8
     - openssh
     - p7zip
     - pandoc
