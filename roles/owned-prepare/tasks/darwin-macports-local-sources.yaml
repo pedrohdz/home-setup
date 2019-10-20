@@ -29,18 +29,18 @@
     delay: "{{ package_install_retry_delay }}"
     loop:
       - macports-ports
-      - koekeishiya-ports
+      #- koekeishiya-ports
 
-  - name: Symlinks to koekeishiya-ports
-    file:
-      src: '../../src/koekeishiya-ports/aqua/{{ item }}'
-      dest: '{{ local_ports_base }}/active-ports/aqua/{{ item }}'
-      state: link
-      owner: '{{ owner }}'
-      group: '{{ group }}'
-    loop:
-      - chunkwm
-      - skhd
+  #- name: Symlinks to koekeishiya-ports
+  #  file:
+  #    src: '../../src/koekeishiya-ports/aqua/{{ item }}'
+  #    dest: '{{ local_ports_base }}/active-ports/aqua/{{ item }}'
+  #    state: link
+  #    owner: '{{ owner }}'
+  #    group: '{{ group }}'
+  #  loop:
+  #    - chunkwm
+  #    - skhd
 
   - name: Symlinks to macports-ports
     file:
