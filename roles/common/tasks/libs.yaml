@@ -12,9 +12,19 @@
   until: task_result is succeeded
   retries: "{{ package_install_retry }}"
   delay: "{{ package_install_retry_delay }}"
+- name: Install ropemode
+  pip:
+    name: ropemode
+    executable: pip3
+    extra_args: --user
+    umask: '7077'
+  register: task_result
+  until: task_result is succeeded
+  retries: "{{ package_install_retry }}"
+  delay: "{{ package_install_retry_delay }}"
 - name: Install ropevim
   pip:
-    name: git+https://github.com/python-rope/ropevim.git@master#egg=ropevim
+    name: ropevim
     executable: pip3
     extra_args: --user
     umask: '7077'

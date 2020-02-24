@@ -5,7 +5,7 @@ dependencies:
     vars:
       packages:
         - package: awscli
-          version: '1.16.81'
+          version: '1.18.5'
           bin_files:
             - aws
             - aws_completer
@@ -15,7 +15,7 @@ dependencies:
             - jpterm
         - package: netaddr
         - package: yamllint
-          version: '1.13.0'
+          version: '1.20.0'
     tags:
       - devops
       - devops_tools
@@ -25,7 +25,7 @@ dependencies:
     vars:
       packages:
         - package: ansible-lint
-          version: '4.0.0'
+          version: '4.2.0'
     when: (ansible_facts['os_family'] | lower) != 'debian'
     tags:
       - devops
