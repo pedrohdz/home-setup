@@ -1,11 +1,17 @@
 ---
 all:
-  hosts:
-    192.168.33.10: {}
-    localhost:
-      ansible_connection: local
+  #hosts:
+  #  192.168.33.10: {}
+  #  localhost:
+  #    ansible_connection: local
+  children:
+    workstation:
+      hosts:
+        localhost:
+          ansible_connection: local
   vars:
     sudo_access: true
+    owned: true
 ...
 
 # vim: filetype=yaml

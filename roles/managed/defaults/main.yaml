@@ -21,15 +21,13 @@ macports:
     - curl
     - cvs
     - dnsmasq
-    - drill
     - findutils
     - flex
     - gawk
     - git
     - gmake
     - gnetcat
-    # FIXME - Cataline support pending
-    # - gnupg2
+    - gnupg2
     - gnutar
     - gnutls
     - go
@@ -41,6 +39,9 @@ macports:
     - helm-2.12
     - helm-2.13
     - helm-2.14
+    - helm-2.16
+    - helm-3.0
+    - helm-3.1
     - helm_select
     - htop
     - inetutils
@@ -50,7 +51,11 @@ macports:
     - kubectl-1.13
     - kubectl-1.14
     - kubectl-1.15
+    - kubectl-1.16
+    - kubectl-1.17
     - kubectl_select
+    - kubectx
+    - ldns
     - less
     - lftp
     - maven3
@@ -88,6 +93,8 @@ macports:
     - python3_select
     - python_select
     - qrencode
+    - ruby27
+    - ruby_select
     - s3cmd
     - samba3
     - shellcheck
@@ -95,7 +102,9 @@ macports:
     - socat
     - sshpass
     - stunnel
-    - terraform
+    - terraform-0.11
+    - terraform-0.12
+    - terraform_select
     - tmux
     - tmux-pasteboard
     - tor
@@ -112,8 +121,6 @@ macports:
 
   absent:
     - awscli_select
-    #- helm
-    #- kubectl
     - py26-pip
     - py27-awscli
     - py33-pip

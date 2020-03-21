@@ -42,17 +42,17 @@
   #    - chunkwm
   #    - skhd
 
-  - name: Symlinks to macports-ports
-    file:
-      src: '../../src/macports-ports/{{ item }}'
-      dest: '{{ local_ports_base }}/active-ports/{{ item }}'
-      state: link
-      owner: '{{ owner }}'
-      group: '{{ group }}'
-    loop:
-      - sysutils/terraform
-      - sysutils/minikube
-      - sysutils/kubectl
+  #- name: Symlinks to macports-ports
+  #  file:
+  #    src: '../../src/macports-ports/{{ item }}'
+  #    dest: '{{ local_ports_base }}/active-ports/{{ item }}'
+  #    state: link
+  #    owner: '{{ owner }}'
+  #    group: '{{ group }}'
+  #  loop:
+  #    - sysutils/terraform
+  #    - sysutils/minikube
+  #    - sysutils/kubectl
 
   - name: Add MacPorts source
     lineinfile:

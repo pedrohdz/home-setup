@@ -9,9 +9,9 @@ macports:
 
   selections:
     - group: helm
-      version: helm2.14
+      version: helm3.1
     - group: kubectl
-      version: kubectl1.13
+      version: kubectl1.17
     - group: maven
       version: maven3
     - group: pip
@@ -23,7 +23,9 @@ macports:
     - group: python3
       version: python37
     - group: ruby
-      version: ruby24
+      version: ruby27
+    - group: terraform
+      version: terraform0.12
     - group: virtualenv
       version: virtualenv27
 ...
