@@ -20,6 +20,10 @@ dependencies:
           bin_files:
             - instant-markdown-d
             - markdown-it
+        - module: joplin
+          version: LATEST
+          bin_files:
+            - joplin
     tags:
       - dev_nodejs
       - dev_nodejs_tools
