@@ -17,6 +17,7 @@ macports:
     - bash-completion
     - cmake
     - coreutils
+    - cryptcat
     - ctags
     - curl
     - cvs
@@ -25,6 +26,7 @@ macports:
     - flex
     - gawk
     - git
+    - git-secret
     - gmake
     - gnetcat
     - gnupg2
