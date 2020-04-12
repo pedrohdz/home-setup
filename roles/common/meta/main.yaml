@@ -2,9 +2,13 @@
 dependencies:
   - role: dotlocal-pyenv-install
     vars:
-      packages:
+      absent:
         - package: bumpversion
+      packages:
         - package: bump2version
+          bin_files:
+            - bump2version
+            - bumpversion
         - package: ignr
         - package: pip-autoremove
         - package: pipdeptree

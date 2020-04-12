@@ -1,0 +1,29 @@
+---
+- name: "Ensure Python {{ package }} venv link is absent"
+  file:
+    path: "~/.local/opt/python/{{ package }}"
+    state: absent
+  register: venv_package_deleted
+- name: "Ensure symlinks absent for {{ package }} bin files: {{ bin_files }}"
+  when: venv_package_deleted.changed
+  file:
+    path: "~/.local/bin/{{ bin_file_item }}"
+    state: absent
+  loop: "{{ bin_files }}"
+  loop_control:
+    loop_var: bin_file_item
+- name: "Python {{ package }} venv directories glob"
+  find:
+    file_type: directory
+    paths:
+      - "~/.local/opt/python"
+    patterns:
+      - "{{ package }}-*"
+  register: venvs_to_delete
+- name: "Ensure Python {{ package }} venv directories are absent"
+  file:
+    path: "{{ item.path }}"
+    state: absent
+  with_items: "{{ venvs_to_delete.files }}"
+
+...
