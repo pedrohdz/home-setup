@@ -36,7 +36,7 @@
     name: alias.slogg
     value: log
         --graph
-        --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset'
+        --pretty=format:'%Cred%h%Creset %C(blue bold)%G?%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset'
         --abbrev-commit
         --date=relative
         --max-count 10
@@ -47,7 +47,7 @@
     name: alias.slogg-long
     value: log
         --graph
-        --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset'
+        --pretty=format:'%Cred%h%Creset %C(blue bold)%G?%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset'
         --abbrev-commit
         --date=relative
     scope: global
@@ -136,5 +136,18 @@
     value: vimdiff
     scope: global
 
+# [commit]
+- name: git config commit.gpgSign
+  git_config:
+    name: commit.gpgSign
+    value: 'true'
+    scope: global
+
+# [tag]
+- name: git config tag.gpgSign
+  git_config:
+    name: tag.gpgSign
+    value: 'true'
+    scope: global
 
 ...
