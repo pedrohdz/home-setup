@@ -16,6 +16,10 @@ macports:
       version: maven3
     - group: pip
       version: pip37
+    - group: pip2
+      version: pip27
+    - group: pip3
+      version: pip37
     - group: python
       version: python37
     - group: python2

@@ -5,7 +5,7 @@
 - name: Install rope
   pip:
     name: rope
-    executable: pip3
+    executable: /opt/local/bin/pip3
     extra_args: --user
     umask: '7077'
   register: task_result
@@ -15,7 +15,7 @@
 - name: Install ropemode
   pip:
     name: ropemode
-    executable: pip3
+    executable: /opt/local/bin/pip3
     extra_args: --user
     umask: '7077'
   register: task_result
@@ -25,7 +25,7 @@
 - name: Install ropevim
   pip:
     name: ropevim
-    executable: pip3
+    executable: /opt/local/bin/pip3
     extra_args: --user
     umask: '7077'
   register: task_result
@@ -39,7 +39,7 @@
 - name: Install jedi
   pip:
     name: jedi
-    executable: pip3
+    executable: /opt/local/bin/pip3
     extra_args: --user
     umask: '7077'
   register: task_result
