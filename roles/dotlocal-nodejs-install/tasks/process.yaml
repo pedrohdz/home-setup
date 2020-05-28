@@ -4,7 +4,7 @@
     name: "{{ module }}"
     global: false
     path: "~/.local/opt/nodejs/{{ module }}-{{ version }}"
-    state: present
+    state: "{{ 'present' if version != 'LATEST' else 'latest' }}"
     version: "{{ version if version != 'LATEST' else '' }}"
   register: task_result
   until: task_result is succeeded

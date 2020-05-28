@@ -16,7 +16,7 @@ dependencies:
     vars:
       modules:
         - module: instant-markdown-d
-          version: 0.1.1
+          version: LATEST
           bin_files:
             - instant-markdown-d
             - markdown-it
