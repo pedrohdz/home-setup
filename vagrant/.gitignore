@@ -1,0 +1,26 @@
+
+# Created by https://www.toptal.com/developers/gitignore/api/vagrant
+# Edit at https://www.toptal.com/developers/gitignore?templates=vagrant
+
+### Vagrant ###
+# General
+.vagrant/
+
+# Log files (if you are creating logs in debug mode, uncomment this)
+# *.logs
+
+### Vagrant Patch ###
+*.box
+
+# End of https://www.toptal.com/developers/gitignore/api/vagrant
+
+# Generated using ignr.py - github.com/Antrikshy/ignr.py
+# Local to the project
+
+
+#------------------------------------------------------------------------------
+# Local to the project
+#------------------------------------------------------------------------------
+*.log
+/tmp/
+/vagrant-share/

@@ -1,0 +1,47 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure('2') do |config|
+  config.vm.box = 'debian/buster64'
+  config.vm.hostname = 'ubuntu-buster'
+
+  config.vm.provider 'virtualbox' do |vb|
+    vb.gui = false
+    vb.memory = 512
+    vb.cpus = 1
+  end
+
+  if Vagrant.has_plugin?('vagrant-vbguest')
+    config.vbguest.auto_update = true
+  end
+
+  config.vm.synced_folder 'vagrant-share/', '/vagrant',
+    create: true,
+    automount: true,
+    type: 'virtualbox',
+    owner: 'vagrant',
+    group: 'vagrant'
+
+  config.vm.network 'private_network', ip: '192.168.50.4'
+
+  config.vm.provision 'ansible',
+    playbook: '../playbook.yaml',
+    config_file: '../ansible.cfg',
+    compatibility_mode: '2.0'
+    #groups: {
+    # 'k3s_node' => [ 'k3s-node-0' ],
+    # 'k3s_node:vars' => {
+    #   'k3s_control_nodes' => [ 'k3s-node-0' ]
+    # },
+    # 'nfs_srv' => [ 'nfs-srv-0' ],
+    # 'nfs_srv:vars' => {
+    #   'nfs_srv_media_export_cidrs' => [ '192.168.50.0/24' ]
+    # },
+    # 'protected' => _all_ansible_hosts,
+    # 'vagrant' => _all_ansible_hosts,
+    # 'vagrant:vars' => {
+    #   'ansible_group_priority' => 100
+    # },
+    #}
+
+end
