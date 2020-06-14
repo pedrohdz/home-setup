@@ -1,0 +1,46 @@
+---
+- name: Gather os specific variables
+  include_vars:
+    file: '{{ lookup("first_found", _pyvenv_apps_files) }}'
+  vars:
+    _pyvenv_apps_files:
+      - "vars/{{ ansible_distribution }}.yaml"
+      - "vars/{{ ansible_os_family }}.yaml"
+      - "vars/defaults.yaml"
+
+- name: Stat the python executable
+  stat:
+    path: '{{ pyvenv_apps_py3 }}'
+  register: _pyvenv_apps_py3
+
+- name: Assert that the python executable exists
+  assert:
+    fail_msg: Unable to find executable {{ pyvenv_apps_py3 }}
+    success_msg: Utilizing {{ pyvenv_apps_py3 }} for venv installations
+    that:
+      - _pyvenv_apps_py3.stat.exists
+      - _pyvenv_apps_py3.stat.executable
+
+- name: Removing Python venvs
+  include_tasks: process-absent.yaml
+  vars:
+    package: "{{ absent_item['package'] }}"
+    bin_files: "{{ absent_item['bin_files'] | default([ absent_item['package'] ]) }}"
+  loop: "{{ pyvenv_apps_absent | default([]) }}"
+  loop_control:
+    loop_var: absent_item
+
+- name: Manage tooling directory structure
+  include_tasks: manage-directories.yaml
+
+- name: Installing multiple Python venvs
+  include_tasks: process.yaml
+  vars:
+    package: '{{ package_item["package"] }}'
+    version: '{{ package_item["version"] | default("LATEST") }}'
+    bin_files: '{{ package_item["bin_files"] if "bin_files" in package_item else [ package_item["package"] ] }}'
+  loop: '{{ pyvenv_apps | default([]) }}'
+  loop_control:
+    loop_var: package_item
+
+...

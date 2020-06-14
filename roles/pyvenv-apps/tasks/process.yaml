@@ -1,0 +1,52 @@
+---
+
+- name: Ensure Python package {{ package }} pinned version is installed ({{ pyvenv_apps_py3 }})
+  pip:
+    name: '{{ package }}'
+    version: '{{ version }}'
+    umask: '{{ pyvenv_apps_install_umask }}'
+    virtualenv: '{{ pyvenv_apps_base_dir }}/opt/python/{{ package }}-{{ version }}'
+    virtualenv_command: '{{ pyvenv_apps_py3 }} -m venv'
+  register: _task_result
+  until: _task_result is succeeded
+  retries: '{{ pyvenv_apps_retry }}'
+  delay: '{{ pyvenv_apps_retry_delay }}'
+  become: '{{ (pyvenv_apps_become_to_install | bool) or
+        (pyvenv_apps_become_for_all | bool) }}'
+  when: version != 'LATEST'
+
+- name: Ensure latest version of the Python {{ package }} ({{ pyvenv_apps_py3 }})
+  pip:
+    name: '{{ package }}'
+    state: latest
+    umask: '{{ pyvenv_apps_install_umask }}'
+    virtualenv: '{{ pyvenv_apps_base_dir }}/opt/python/{{ package }}-{{ version }}'
+    virtualenv_command: '{{ pyvenv_apps_py3 }} -m venv'
+  register: _task_result
+  until: _task_result is succeeded
+  retries: '{{ pyvenv_apps_retry }}'
+  delay: '{{ pyvenv_apps_retry_delay }}'
+  become: '{{ (pyvenv_apps_become_to_install | bool) or
+        (pyvenv_apps_become_for_all | bool) }}'
+  when: version == 'LATEST'
+
+- name: 'Maintain a symlink to active version: {{ package }}-{{ version }}'
+  file:
+    src: '{{ package }}-{{ version }}'
+    dest: '{{ pyvenv_apps_base_dir }}/opt/python/{{ package }}'
+    state: link
+  become: '{{ (pyvenv_apps_become_to_link | bool) or
+        (pyvenv_apps_become_for_all | bool) }}'
+
+- name: 'Maintain symlinks to the bin files: {{ bin_files }}'
+  file:
+    src: '../opt/python/{{ package }}/bin/{{ bin_file_item }}'
+    dest: '{{ pyvenv_apps_base_dir }}/bin/{{ bin_file_item }}'
+    state: link
+  loop: '{{ bin_files }}'
+  loop_control:
+    loop_var: bin_file_item
+  become: '{{ (pyvenv_apps_become_to_link | bool) or
+        (pyvenv_apps_become_for_all | bool) }}'
+
+...

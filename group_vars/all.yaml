@@ -1,0 +1,43 @@
+---
+pyvenv_apps:
+  - package: ansible
+    bin_files:
+      - ansible
+      - ansible-config
+      - ansible-connection
+      - ansible-console
+      - ansible-doc
+      - ansible-galaxy
+      - ansible-inventory
+      - ansible-playbook
+      - ansible-pull
+      - ansible-test
+      - ansible-vault
+  - package: awscli
+    bin_files:
+      - aws
+      - aws_completer
+  - package: bump2version
+    bin_files:
+      - bump2version
+      - bumpversion
+  - package: flake8
+  - package: ignr
+  - package: isort
+  - package: jmespath-terminal
+    bin_files:
+      - jpterm
+  - package: netaddr
+  - package: pip-autoremove
+  - package: pipdeptree
+  - package: pylint
+  - package: sqlparse
+    bin_files:
+      - sqlformat
+  - package: tabulate
+  - package: tox
+  - package: yamllint
+
+pyvenv_apps_absent:
+  - package: bumpversion
+...

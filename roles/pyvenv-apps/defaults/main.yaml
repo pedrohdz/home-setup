@@ -1,0 +1,18 @@
+---
+pyvenv_apps_retry: 3
+pyvenv_apps_retry_delay: 10
+
+pyvenv_apps_base_dir: /opt/tooling
+pyvenv_apps_base_dir_mode: '0755'
+pyvenv_apps_base_dir_root_owner: root
+pyvenv_apps_base_dir_root_group: root
+
+
+pyvenv_apps_install_umask: '7022'
+
+pyvenv_apps_become_to_manage_dirs: false
+pyvenv_apps_become_to_install: false
+pyvenv_apps_become_to_link: false
+pyvenv_apps_become_for_all: false
+
+...

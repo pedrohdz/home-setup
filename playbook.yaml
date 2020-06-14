@@ -1,8 +1,7 @@
 ---
 - hosts: all
-  pre_tasks:
-    - debug: msg='here i am!!!'
-  #roles:
+  roles:
+    - role: pyvenv-apps
   #  - role: setup_debian
   #    when: sudo_access and (ansible_facts['os_family'] | lower == "debian")
   #  - role: owned-prepare
@@ -11,16 +10,18 @@
   #    when: managed | default(false)
   #  - role: owned
   #    when: owned | default(false)
+  vars:
+    pyvenv_apps_become_for_all: true
 
-- hosts: workstation
-  roles:
-    - workstation
-
-- hosts: dev
-  roles:
-    - dev-all
-
-- hosts: devops
-  roles:
-    - devops
+#- hosts: workstation
+#  roles:
+#    - workstation
+#
+#- hosts: dev
+#  roles:
+#    - dev-all
+#
+#- hosts: devops
+#  roles:
+#    - devops
 ...

@@ -1,0 +1,21 @@
+---
+- name: Manage Python tooling directory structure
+  file:
+    path: '{{ item }}'
+    state: directory
+    mode: '{{ pyvenv_apps_base_dir_mode }}'
+    owner: '{{ _become_root | ternary(pyvenv_apps_base_dir_root_owner, ansible_facts["user_uid"]) }}'
+    group: '{{ _become_root | ternary(pyvenv_apps_base_dir_root_group, ansible_facts["user_gid"]) }}'
+  loop:
+    - '{{ pyvenv_apps_base_dir }}'
+    - '{{ pyvenv_apps_base_dir }}/bin'
+    - '{{ pyvenv_apps_base_dir }}/etc'
+    - '{{ pyvenv_apps_base_dir }}/lib'
+    - '{{ pyvenv_apps_base_dir }}/lib/python'
+    - '{{ pyvenv_apps_base_dir }}/opt'
+    - '{{ pyvenv_apps_base_dir }}/opt/python'
+  become: '{{ _become_root }}'
+  vars:
+    _become_root: '{{ (pyvenv_apps_become_to_manage_dirs | bool) or
+        (pyvenv_apps_become_for_all | bool) }}'
+...
