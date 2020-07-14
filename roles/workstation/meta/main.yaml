@@ -9,13 +9,4 @@ dependencies:
   - role: devops
     tags:
       - workstation
-  #- role: homeshick
-  #  vars:
-  #    castles:
-  #      - uri: git@github.com:pedrohdz/chunkwm-dotfiles.git
-  #  tags:
-  #    - workstation
-  #    - workstation_homeshick
-  #    - homeshick
-  #    - install
 ...

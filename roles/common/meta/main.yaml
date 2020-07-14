@@ -25,8 +25,10 @@ dependencies:
     vars:
       castles:
         - uri: git@bitbucket.org:pedrohdz/dr-home.git
-        - uri: git@github.com:pedrohdz/dr-tmux.git
-        - uri: git@github.com:pedrohdz/dr-vimfiles.git
+        - uri: git@github.com:pedrohdz/dotfiles-bash.git
+        - uri: git@github.com:pedrohdz/dotfiles-powerline.git
+        - uri: git@github.com:pedrohdz/dotfiles-tmux.git
+        - uri: git@github.com:pedrohdz/dotfiles-vim.git
     tags:
       - common
       - common_homeshick

@@ -32,13 +32,4 @@ dependencies:
       - devops_tools
       - dotlocal_pyenv_install
       - install
-  - role: homeshick
-    vars:
-      castles:
-        - uri: git@github.com:pedrohdz/dr-vimfiles-devops.git
-    tags:
-      - devops
-      - devops_homeshick
-      - homeshick
-      - install
 ...

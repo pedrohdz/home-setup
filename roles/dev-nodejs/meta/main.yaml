@@ -3,15 +3,6 @@ dependencies:
   - role: dev-common
     tags:
       - dev_nodejs
-  - role: homeshick
-    vars:
-      castles:
-        - uri: git@github.com:pedrohdz/dr-vimfiles-nodejs.git
-    tags:
-      - dev_nodejs
-      - dev_nodejs_homeshick
-      - homeshick
-      - install
   - role: dotlocal-nodejs-install
     vars:
       modules:
@@ -20,10 +11,11 @@ dependencies:
           bin_files:
             - instant-markdown-d
             - markdown-it
-        - module: joplin
-          version: LATEST
-          bin_files:
-            - joplin
+        # FIXME:
+        #- module: joplin
+        #  version: LATEST
+        #  bin_files:
+        #    - joplin
     tags:
       - dev_nodejs
       - dev_nodejs_tools
