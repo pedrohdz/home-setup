@@ -10,6 +10,10 @@ dependencies:
             - bump2version
             - bumpversion
         - package: ignr
+        - package: json2yaml
+          bin_files:
+            - json2yaml
+            - yaml2json
         - package: pip-autoremove
         - package: pipdeptree
     tags:
